@@ -14,15 +14,15 @@
 
 从上图可以发现：对于小I/O请求，buffered I/O的性能始终高于direct I/O；而对于大I/O请求，direct I/O则优于buffered I/O。
 
-这两种I/O模式的对比如下表所示：
-
-![](./img/fast24-autoio-bio-vs-dio.png)
-
-页缓存引入了额外的数据拷贝，还需要执行页分配、加锁、页回收等操作。
+此外，页缓存还引入了额外的数据拷贝，需要执行页分配、加锁、页回收等操作。
 
 ![](./img/fast24-autoio-bio-time-breakdown.png)
 
 从上图可以发现：这些文件系统将大约20%的时间花费在应用和页缓存之间的数据拷贝上，而超过40%的时间则花费在页缓存的管理上。
+
+因此，这两种I/O模式的对比如下表所示：
+
+![](./img/fast24-autoio-bio-vs-dio.png)
 
 ### 方法
 
